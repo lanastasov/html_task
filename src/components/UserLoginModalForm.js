@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import React, { useState } from "react";
 import { Form, Button, Nav, Row, Col } from "react-bootstrap";
 
-const UserLoginModalForm = ({ closeModal }) => {
+const UserLoginModalForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -11,14 +11,10 @@ const UserLoginModalForm = ({ closeModal }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   const handleClose = () => {
-    console.log("handleClose");
     setIsOpen(!isOpen);
   };
 
   const handleSubmit = () => {
-    console.log("passwordValidation ", passwordValidation());
-    console.log("emailValidation ", emailValidation());
-
     if (passwordValidation()) {
       setPasswwordError("");
     }
@@ -61,12 +57,7 @@ const UserLoginModalForm = ({ closeModal }) => {
         className="d-flex align-items-center justify-content-center"
         style={{ height: "100vh" }}
       ></div>
-      <Modal
-        // style={{ width: 350 }}
-        show={isOpen}
-        onHide={handleClose}
-        backdrop="static"
-      >
+      <Modal show={isOpen} onHide={handleClose} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title style={{ margin: "0 auto" }}>
             Влез в профила си

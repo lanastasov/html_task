@@ -1,19 +1,97 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import weight from "../assets/weight.svg";
-import ruler from "../assets/ruler.svg";
-import Result from "./Result";
-import { Link } from "react-router-dom";
+import weightSVG from "../assets/weight.svg";
+import rulerSVG from "../assets/ruler.svg";
+import { useNavigate } from "react-router-dom";
 
-// import weight from "../assets/wave-big.svg";
+const TegloCalculator = ({ currentWeight, setCurrentWeight }) => {
+  const navigate = useNavigate();
+  const [submitFlag] = useState(false);
+  const [weightBeforePregranncy, setWeightBeforePregranncy] = useState();
+  const [weightBeforePregranncyError, setWeightBeforePregranncyError] =
+    useState();
 
-const TegloCalculator = () => {
-  const [showComponent, setShowComponent] = useState(false);
+  const [currentWeightError, setCurrentWeightError] = useState();
+
+  const [height, setHeight] = useState();
+  const [heightError, setHeightError] = useState();
+
+  const [week, setWeek] = useState();
+  const [weekError, setWeekError] = useState();
 
   function handleSubmit(e) {
-    // e.preventDefault();
-    setShowComponent(!showComponent);
-    console.log("2.", showComponent);
+    e.preventDefault();
+    if (weightBeforePregnancyValidation()) {
+      setWeightBeforePregranncyError("");
+    }
+
+    if (currentWeightValidation()) {
+      setCurrentWeightError("");
+    }
+
+    if (heightWeightValidation()) {
+      setHeightError("");
+    }
+
+    if (weekValidation()) {
+      setWeekError("");
+    }
+
+    return submitFlag;
+  }
+
+  function handleChangeWeightBeforePregnancy(e) {
+    setWeightBeforePregranncy(e.target.value);
+  }
+
+  function handleChangeCurrentWeight(e) {
+    setCurrentWeight(e.target.value);
+  }
+
+  function handleChangeHeight(e) {
+    setHeight(e.target.value);
+  }
+
+  function handleChangeWeek(e) {
+    setWeek(e.target.value);
+  }
+  function weightBeforePregnancyValidation() {
+    const regex = /^\d+$/i;
+    if (
+      !weightBeforePregranncy ||
+      regex.test(weightBeforePregranncy) === false
+    ) {
+      setWeightBeforePregranncyError("Моля въведете тегло");
+      return false;
+    }
+    return true;
+  }
+
+  function currentWeightValidation() {
+    const regex = /^\d+$/i;
+    if (!currentWeight || regex.test(currentWeight) === false) {
+      setCurrentWeightError("Моля въведете тегло");
+      return false;
+    }
+
+    return true;
+  }
+
+  function heightWeightValidation() {
+    const regex = /^\d+$/i;
+    if (!height || regex.test(height) === false) {
+      setHeightError("Моля въведете височина");
+      return false;
+    }
+    return true;
+  }
+
+  function weekValidation() {
+    // const regex =/^\d+$/i;
+    if (!week) {
+      setWeekError("Моля въведете седмица");
+      return false;
+    }
+    return true;
   }
 
   return (
@@ -22,23 +100,42 @@ const TegloCalculator = () => {
         <h4>Какво трябва да бъде теглото ми по време на бременност?</h4>
         <div className="allUnit">
           <div className="formWrapper">
-            <img className="icon" src={weight} />
-            <input type="text" placeholder="Тегло преди забременяване" />
+            <img className="icon" src={weightSVG} alt="weight" />
+
+            <input
+              type="text"
+              placeholder="Тегло преди забременяване"
+              onChange={handleChangeWeightBeforePregnancy}
+              value={weightBeforePregranncy}
+            />
             <span className="unit">кг</span>
+            <span className="text-danger">{weightBeforePregranncyError}</span>
           </div>
         </div>
         <div className="allUnit">
           <div className="formWrapper">
-            <img className="icon" src={weight} />
-            <input type="text" placeholder="Тегло в момента" />
+            <img className="icon" src={weightSVG} alt="weight" />
+            <input
+              type="text"
+              placeholder="Тегло в момента"
+              onChange={handleChangeCurrentWeight}
+              value={currentWeight}
+            />
             <span className="unit">кг</span>
+            <span className="text-danger">{currentWeightError}</span>
           </div>
         </div>
         <div className="allUnit">
           <div className="formWrapper">
-            <img className="icon" src={ruler} />
-            <input type="text" placeholder="Височина" />
+            <img className="icon" src={rulerSVG} alt="ruler" />
+            <input
+              type="text"
+              placeholder="Височина"
+              onChange={handleChangeHeight}
+              value={height}
+            />
             <span className="unit">см</span>
+            <span className="text-danger">{heightError}</span>
           </div>
         </div>
         <div className="allUnit">
@@ -50,6 +147,8 @@ const TegloCalculator = () => {
               data-rule-required="true"
               data-msg-required="Моля, изберете седмица"
               aria-required="true"
+              onChange={handleChangeWeek}
+              value={week}
             >
               <option value="">Избери седмица</option>
               <option value="1">седмица 1</option>
@@ -93,6 +192,7 @@ const TegloCalculator = () => {
               <option value="39">седмица 39</option>
               <option value="40">седмица 40</option>
             </select>
+            <span className="text-danger">{weekError}</span>
           </div>
         </div>
         <div className="allUnit">
@@ -105,15 +205,21 @@ const TegloCalculator = () => {
         </div>
         <div className="allUnit">
           <div className="formWrapper button">
-            <Link to={`/result`}>
-              {" "}
-              <Button type="submit">Изчисли</Button>
-            </Link>
+            <button
+              onClick={(e) =>
+                weightBeforePregnancyValidation() &&
+                currentWeightValidation() &&
+                heightWeightValidation() &&
+                weekValidation()
+                  ? navigate("/result")
+                  : navigate("/")
+              }
+            >
+              Изчисли
+            </button>
           </div>
         </div>
       </form>
-
-      {/* {showComponent ? <Result /> : null} */}
     </>
   );
 };

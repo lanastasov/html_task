@@ -2,16 +2,8 @@ import React, { useState } from "react";
 import data from "../data/data.js";
 import Select from "react-dropdown-select";
 import { Container, Row, Col } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useRouteMatch,
-} from "react-router-dom";
-const Zoodiac = () => {
-  const [zoodiac, setZodiac] = useState();
 
+const Zoodiac = () => {
   const namesZodiacs = [
     { label: "Овен", value: 1 },
     { label: "Лъв", value: 2 },
@@ -30,11 +22,6 @@ const Zoodiac = () => {
   return (
     <>
       <h3>Хороскопи </h3>
-      {/* <Route path='/privacy-policy' component={() => { 
-        window.location.href = 'https://www.edna.bg/horoskopi'; 
-        return null;
-    }}/> */}
-
       <Container>
         <Col>
           <h3>

@@ -1,9 +1,9 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 
 import "../../src/Sidebar.css";
-export default (props) => {
+export default () => {
   return (
     <Menu>
       <a className="menu-item" href="/">
@@ -49,7 +49,7 @@ export default (props) => {
             id="basic-nav-dropdown"
           ></NavDropdown>
           <NavDropdown
-            title="Тефло при бременност"
+            title="Тегло при бременност"
             id="basic-nav-dropdown"
           ></NavDropdown>
           <NavDropdown

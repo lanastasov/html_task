@@ -3,21 +3,10 @@ header {
   height: 80px;
 }
 
-/* .container {
-  max-width: 1280px;
-  background-color: papayawhip;
-  border: 1px solid red;
-  margin-top: 50px;
-  padding-top: 50px;
-  margin: 0 auto;
-  height: 80vh;
-} */
-
 .icon {
   display: block;
   width: 20px;
   height: 14px;
-  /* margin: 42px auto 0; */
   fill: #fc5e2f;
 }
 ::selection {
@@ -124,7 +113,31 @@ h4.label {
   margin: 0 0 8px;
   text-align: left;
 }
+h4.smaller {
+  font-size: 1.37rem;
+  height: 66px;
+  padding-top: 27px;
+  line-height: 1.10526;
+}
 
+span.accent {
+  display: block;
+  color: #fc5e2f;
+  font-size: 2.625rem;
+}
+
+.result-wrap {
+  text-align: center;
+}
+.result-title {
+  width: 155px;
+  height: 46px;
+  margin: 0 auto;
+  padding: 13px;
+  box-shadow: 0 3px 6px rgb(0 0 0 / 16%);
+  border-radius: 0 0 5px 5px;
+  background-color: #fff;
+}
 form.allUnit:nth-child(4) {
   padding-bottom: 0px;
 }

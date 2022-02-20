@@ -19,7 +19,12 @@ const Header = () => {
               <Nav.Link href="/baby3">дете 3+</Nav.Link>
 
               <Nav.Link href="/search">search</Nav.Link>
-              <Nav.Link href="/login">вход</Nav.Link>
+              <Nav.Link style={{ color: "red" }} href="/login">
+                вход
+              </Nav.Link>
+              <Nav.Link style={{ color: "red" }} href="/contact">
+                контакт
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

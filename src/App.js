@@ -1,18 +1,16 @@
-import svg from "./assets/wave-big.svg";
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TegloPriBremmenost from "./components/TegloPriBremmenost";
 import UserLoginModalForm from "./components/UserLoginModalForm";
 import UserContactModalForm from "./components/UserContactModalForm";
 import Sidebar from "./components/Sidebar";
-import "font-awesome/css/font-awesome.min.css";
-import Header from "./components/Header";
+
 import Result from "./components/Result";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
+  const [currentWeight, setCurrentWeight] = useState();
 
-  const openModal = () => setIsOpen({ isOpen: true });
   const closeModal = () => setIsOpen({ isOpen: false });
 
   const handleSubmit = (name) => {
@@ -28,24 +26,50 @@ function App() {
       </div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<TegloPriBremmenost />} exact />
-          <Route path="/result" element={<Result />} />
+          <Route
+            path="/"
+            element={
+              <TegloPriBremmenost
+                currentWeight={currentWeight}
+                setCurrentWeight={setCurrentWeight}
+              />
+            }
+            exact
+          />
+          <Route
+            path="/result"
+            element={
+              <Result
+                currentWeight={currentWeight}
+                setCurrentWeight={setCurrentWeight}
+              />
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <UserLoginModalForm
+                closeModal={closeModal}
+                isOpen={isOpen}
+                handleSubmit={handleSubmit}
+              />
+            }
+            exact
+          />
+
+          <Route
+            path="/contact"
+            element={
+              <UserContactModalForm
+                closeModal={closeModal}
+                isOpen={isOpen}
+                handleSubmit={handleSubmit}
+              />
+            }
+            exact
+          />
         </Routes>
       </BrowserRouter>
-
-      {/* {isOpen ? (
-        <UserLoginModalForm
-          closeModal={closeModal}
-          isOpen={isOpen}
-          handleSubmit={handleSubmit}
-        />
-      ) : null} */}
-      {/* <UserContactModalForm
-        closeModal={closeModal}
-        isOpen={isOpen}
-        handleSubmit={handleSubmit}
-      /> */}
-      {/* <TegloPriBremmenost /> */}
     </div>
   );
 }

@@ -7,6 +7,7 @@ import UserContactModalForm from "./components/UserContactModalForm";
 import Sidebar from "./components/Sidebar";
 import "font-awesome/css/font-awesome.min.css";
 import Header from "./components/Header";
+import Result from "./components/Result";
 
 function App() {
   const [isOpen, setIsOpen] = useState(true);
@@ -28,6 +29,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<TegloPriBremmenost />} exact />
+          <Route path="/result" element={<Result />} />
         </Routes>
       </BrowserRouter>
 

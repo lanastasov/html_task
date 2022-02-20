@@ -3,13 +3,15 @@ import { Button } from "react-bootstrap";
 import weight from "../assets/weight.svg";
 import ruler from "../assets/ruler.svg";
 import Result from "./Result";
+import { Link } from "react-router-dom";
+
 // import weight from "../assets/wave-big.svg";
 
 const TegloCalculator = () => {
   const [showComponent, setShowComponent] = useState(false);
 
   function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     setShowComponent(!showComponent);
     console.log("2.", showComponent);
   }
@@ -103,11 +105,15 @@ const TegloCalculator = () => {
         </div>
         <div className="allUnit">
           <div className="formWrapper button">
-            <Button type="submit">Изчисли</Button>
+            <Link to={`/result`}>
+              {" "}
+              <Button type="submit">Изчисли</Button>
+            </Link>
           </div>
         </div>
       </form>
-      {showComponent ? <Result /> : null}
+
+      {/* {showComponent ? <Result /> : null} */}
     </>
   );
 };

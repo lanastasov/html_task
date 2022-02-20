@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import TegloCalculator from "./TegloCalculator";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Zoodiac from "./Zoodiac";
 const TegloPriBremmenost = () => {
   return (
     <>
@@ -33,7 +34,7 @@ const TegloPriBremmenost = () => {
             <TegloCalculator />
           </Col>
           <Col sm="4" style={{ backgroundColor: "beige" }}>
-            2
+            <Zoodiac />
           </Col>
         </Row>
       </Container>

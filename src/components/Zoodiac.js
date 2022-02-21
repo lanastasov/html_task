@@ -4,6 +4,8 @@ import Select from "react-dropdown-select";
 import { Container, Row, Col } from "react-bootstrap";
 
 const Zoodiac = () => {
+  const [zoodiacIndex, setZoodiacIndex] = useState(0);
+
   const namesZodiacs = [
     { label: "Овен", value: 1 },
     { label: "Лъв", value: 2 },
@@ -18,6 +20,10 @@ const Zoodiac = () => {
     { label: "Скорпион", value: 11 },
     { label: "Риби", value: 12 },
   ];
+  function changeZodiac(zod) {
+    setZoodiacIndex(zod[0].value - 1);
+    console.log("changeZodiac", zod[0].value);
+  }
 
   return (
     <>
@@ -25,17 +31,17 @@ const Zoodiac = () => {
       <Container>
         <Col>
           <h3>
-            <img src={data[0].img} alt="Овен" />
+            <img src={data[zoodiacIndex].img} alt="Овен" />
 
-            {data[0].name}
+            {data[zoodiacIndex].name}
 
             <Row>
-              <span>{data[0].date}</span>
+              <span>{data[zoodiacIndex].date}</span>
             </Row>
           </h3>
           <Select
             options={namesZodiacs}
-            onChange={(values) => console.log(values[0].value)}
+            onChange={(zod) => changeZodiac(zod)}
           />
 
           {
@@ -64,11 +70,11 @@ const Zoodiac = () => {
             </>
           }
           <p></p>
-          <p> {data[0].daily}</p>
+          <p> {data[zoodiacIndex].daily}</p>
         </Col>
 
-        <p> {data[0].description}</p>
-        <p> {data[0].monthly}</p>
+        <p> {data[zoodiacIndex].description}</p>
+        <p> {data[zoodiacIndex].monthly}</p>
       </Container>
     </>
   );
